@@ -5,15 +5,136 @@
     android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:padding="24dp"
     tools:context=".MainActivity">
 
     <TextView
+        android:id="@+id/titleText"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Hello World!"
-        app:layout_constraintBottom_toBottomOf="parent"
+        android:text="Hardware Interfaces"
+        android:textSize="22sp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toTopOf="@id/btnGpio"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
+
+    <!-- Row 1: GPIO | UART -->
+    <Button
+        android:id="@+id/btnGpio"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginRight="10dp"
+        android:text="GPIO"
+        android:textAllCaps="false"
+        app:layout_constraintBottom_toTopOf="@id/btnI2c"
+        app:layout_constraintEnd_toStartOf="@id/btnUart"
+        app:layout_constraintHorizontal_chainStyle="spread"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/titleText"
+        app:layout_constraintWidth_percent="0.45" />
+
+    <Button
+        android:id="@+id/btnUart"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:text="UART"
+        android:textAllCaps="false"
+        app:layout_constraintBottom_toBottomOf="@id/btnGpio"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@id/btnGpio"
+        app:layout_constraintTop_toTopOf="@id/btnGpio" />
+
+    <!-- Row 2: I2C | SPI -->
+    <Button
+        android:id="@+id/btnI2c"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginRight="10dp"
+        android:text="I2C"
+        android:textAllCaps="false"
+        app:layout_constraintBottom_toTopOf="@id/btnGesture"
+        app:layout_constraintEnd_toStartOf="@id/btnSpi"
+        app:layout_constraintHorizontal_chainStyle="spread"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/btnGpio"
+        app:layout_constraintWidth_percent="0.45" />
+
+    <Button
+        android:id="@+id/btnSpi"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:text="SPI"
+        android:textAllCaps="false"
+        app:layout_constraintBottom_toBottomOf="@id/btnI2c"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@id/btnI2c"
+        app:layout_constraintTop_toTopOf="@id/btnI2c" />
+
+    <!-- Row 3: Gesture | OLED (SPI) -->
+    <Button
+        android:id="@+id/btnGesture"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginRight="10dp"
+        android:text="Gesture"
+        android:textAllCaps="false"
+        app:layout_constraintBottom_toTopOf="@id/btnOledI2c"
+        app:layout_constraintEnd_toStartOf="@id/btnOled"
+        app:layout_constraintHorizontal_chainStyle="spread"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/btnI2c"
+        app:layout_constraintWidth_percent="0.45" />
+
+    <Button
+        android:id="@+id/btnOled"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:text="OLED SPI"
+        android:textAllCaps="false"
+        app:layout_constraintBottom_toBottomOf="@id/btnGesture"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@id/btnGesture"
+        app:layout_constraintTop_toTopOf="@id/btnGesture" />
+
+    <!-- Row 4: OLED I2C | CS Pin Test -->
+    <Button
+        android:id="@+id/btnOledI2c"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginRight="10dp"
+        android:text="OLED I2C"
+        android:textAllCaps="false"
+        app:layout_constraintBottom_toTopOf="@id/btnTest"
+        app:layout_constraintEnd_toStartOf="@id/btnTestRight"
+        app:layout_constraintHorizontal_chainStyle="spread"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/btnGesture"
+        app:layout_constraintWidth_percent="0.45" />
+
+    <Button
+        android:id="@+id/btnTestRight"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:text="CS Test"
+        android:textAllCaps="false"
+        app:layout_constraintBottom_toBottomOf="@id/btnOledI2c"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@id/btnOledI2c"
+        app:layout_constraintTop_toTopOf="@id/btnOledI2c" />
+
+    <!-- Row 5: Quick Demo (full width) -->
+    <Button
+        android:id="@+id/btnTest"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:text="Quick Demo"
+        android:textAllCaps="false"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/btnOledI2c"
+        app:layout_constraintWidth_percent="0.9" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

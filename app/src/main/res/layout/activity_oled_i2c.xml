@@ -1,0 +1,469 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#F5F6FA"
+    android:fillViewport="true"
+    tools:context=".OledI2cActivity">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="20dp">
+
+        <!-- Header -->
+        <TextView
+            android:id="@+id/tv_header"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:background="@drawable/rounded_header"
+            android:padding="20dp"
+            android:text="SSD1306 OLED (I2C)"
+            android:textColor="#FFFFFF"
+            android:textSize="20sp"
+            android:textStyle="bold"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <!-- I2C Device -->
+        <TextView
+            android:id="@+id/lbl_i2c_dev"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:text="I2C Device"
+            android:textColor="#374151"
+            android:textSize="14sp"
+            android:textStyle="bold"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/tv_header" />
+
+        <EditText
+            android:id="@+id/et_i2c_dev"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="4dp"
+            android:background="@drawable/rounded_input"
+            android:hint="/dev/i2c-1"
+            android:inputType="text"
+            android:padding="12dp"
+            android:text="/dev/i2c-1"
+            android:textSize="14sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/lbl_i2c_dev" />
+
+        <!-- Connect button -->
+        <Button
+            android:id="@+id/btn_connect"
+            android:layout_width="0dp"
+            android:layout_height="52dp"
+            android:layout_marginTop="16dp"
+            android:backgroundTint="#3B82F6"
+            android:text="Connect"
+            android:textColor="#FFFFFF"
+            android:textStyle="bold"
+            app:cornerRadius="12dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/et_i2c_dev" />
+
+        <!-- Status -->
+        <TextView
+            android:id="@+id/tv_status"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="12dp"
+            android:background="@drawable/rounded_status_card"
+            android:fontFamily="monospace"
+            android:padding="12dp"
+            android:text="Tap Connect to begin"
+            android:textColor="#10B981"
+            android:textSize="12sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/btn_connect" />
+
+        <!-- ===== TEXT SECTION ===== -->
+        <TextView
+            android:id="@+id/lbl_text_section"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:text="Text Display"
+            android:textColor="#374151"
+            android:textSize="16sp"
+            android:textStyle="bold"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/tv_status" />
+
+        <EditText
+            android:id="@+id/et_text"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:background="@drawable/rounded_input"
+            android:hint="Enter text (\n for new line)"
+            android:inputType="textMultiLine"
+            android:maxLines="8"
+            android:padding="12dp"
+            android:text="Hello\nOLED"
+            android:textSize="14sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/lbl_text_section" />
+
+        <!-- Alignment -->
+        <TextView
+            android:id="@+id/lbl_align"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:text="Alignment"
+            android:textColor="#374151"
+            android:textSize="13sp"
+            android:textStyle="bold"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/et_text" />
+
+        <RadioGroup
+            android:id="@+id/rg_align"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="4dp"
+            android:orientation="horizontal"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/lbl_align">
+
+            <RadioButton
+                android:id="@+id/rb_center"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:checked="true"
+                android:text="Center"
+                android:textSize="13sp" />
+
+            <RadioButton
+                android:id="@+id/rb_left"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:text="Left"
+                android:textSize="13sp" />
+
+            <RadioButton
+                android:id="@+id/rb_right"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:text="Right"
+                android:textSize="13sp" />
+        </RadioGroup>
+
+        <!-- Show Text button -->
+        <Button
+            android:id="@+id/btn_show_text"
+            android:layout_width="0dp"
+            android:layout_height="48dp"
+            android:layout_marginTop="12dp"
+            android:backgroundTint="#10B981"
+            android:text="Show Text"
+            android:textColor="#FFFFFF"
+            android:textStyle="bold"
+            app:cornerRadius="10dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/rg_align" />
+
+        <!-- ===== ICONS SECTION ===== -->
+        <TextView
+            android:id="@+id/lbl_icons_section"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:text="Icons"
+            android:textColor="#374151"
+            android:textSize="16sp"
+            android:textStyle="bold"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/btn_show_text" />
+
+        <Button
+            android:id="@+id/btn_show_icon"
+            android:layout_width="0dp"
+            android:layout_height="48dp"
+            android:layout_marginTop="8dp"
+            android:backgroundTint="#8B5CF6"
+            android:text="Show Icon Grid (Heart, Star, WiFi, Battery, Arrow, Check)"
+            android:textColor="#FFFFFF"
+            android:textSize="13sp"
+            android:textStyle="bold"
+            app:cornerRadius="10dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/lbl_icons_section" />
+
+        <!-- ===== ANIMATION SECTION ===== -->
+        <TextView
+            android:id="@+id/lbl_anim_section"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:text="Animation"
+            android:textColor="#374151"
+            android:textSize="16sp"
+            android:textStyle="bold"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/btn_show_icon" />
+
+        <Button
+            android:id="@+id/btn_start_scroll"
+            android:layout_width="0dp"
+            android:layout_height="48dp"
+            android:layout_marginTop="8dp"
+            android:backgroundTint="#F59E0B"
+            android:text="Scrolling Text"
+            android:textColor="#FFFFFF"
+            android:textStyle="bold"
+            app:cornerRadius="10dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/lbl_anim_section" />
+
+        <Button
+            android:id="@+id/btn_start_bounce"
+            android:layout_width="0dp"
+            android:layout_height="48dp"
+            android:layout_marginTop="8dp"
+            android:backgroundTint="#EF4444"
+            android:text="Bouncing Heart"
+            android:textColor="#FFFFFF"
+            android:textStyle="bold"
+            app:cornerRadius="10dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/btn_start_scroll" />
+
+        <Button
+            android:id="@+id/btn_stop"
+            android:layout_width="0dp"
+            android:layout_height="44dp"
+            android:layout_marginTop="8dp"
+            android:backgroundTint="#6B7280"
+            android:text="Stop Animation"
+            android:textColor="#FFFFFF"
+            app:cornerRadius="10dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/btn_start_bounce" />
+
+        <!-- ===== EYE ANIMATION SECTION ===== -->
+        <TextView
+            android:id="@+id/lbl_eye_section"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:text="Animated Eyes"
+            android:textColor="#374151"
+            android:textSize="16sp"
+            android:textStyle="bold"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/btn_stop" />
+
+        <Button
+            android:id="@+id/btn_start_eyes"
+            android:layout_width="0dp"
+            android:layout_height="52dp"
+            android:layout_marginTop="8dp"
+            android:backgroundTint="#06B6D4"
+            android:text="Start Animated Eyes"
+            android:textColor="#FFFFFF"
+            android:textSize="15sp"
+            android:textStyle="bold"
+            app:cornerRadius="10dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/lbl_eye_section" />
+
+        <!-- Row 1: Normal | Happy | Sad | Angry -->
+        <Button
+            android:id="@+id/btn_eye_normal"
+            android:layout_width="0dp"
+            android:layout_height="40dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginEnd="6dp"
+            android:backgroundTint="#3B82F6"
+            android:text="Normal"
+            android:textAllCaps="false"
+            android:textColor="#FFFFFF"
+            android:textSize="12sp"
+            android:textStyle="bold"
+            app:cornerRadius="8dp"
+            app:layout_constraintEnd_toStartOf="@+id/btn_eye_happy"
+            app:layout_constraintHorizontal_chainStyle="spread"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/btn_start_eyes"
+            app:layout_constraintWidth_percent="0.23" />
+
+        <Button
+            android:id="@+id/btn_eye_happy"
+            android:layout_width="0dp"
+            android:layout_height="40dp"
+            android:layout_marginEnd="6dp"
+            android:backgroundTint="#F59E0B"
+            android:text="Happy"
+            android:textAllCaps="false"
+            android:textColor="#FFFFFF"
+            android:textSize="12sp"
+            android:textStyle="bold"
+            app:cornerRadius="8dp"
+            app:layout_constraintEnd_toStartOf="@+id/btn_eye_sad"
+            app:layout_constraintStart_toEndOf="@id/btn_eye_normal"
+            app:layout_constraintTop_toTopOf="@id/btn_eye_normal"
+            app:layout_constraintWidth_percent="0.23" />
+
+        <Button
+            android:id="@+id/btn_eye_sad"
+            android:layout_width="0dp"
+            android:layout_height="40dp"
+            android:layout_marginEnd="6dp"
+            android:backgroundTint="#6366F1"
+            android:text="Sad"
+            android:textAllCaps="false"
+            android:textColor="#FFFFFF"
+            android:textSize="12sp"
+            android:textStyle="bold"
+            app:cornerRadius="8dp"
+            app:layout_constraintEnd_toStartOf="@+id/btn_eye_angry"
+            app:layout_constraintStart_toEndOf="@id/btn_eye_happy"
+            app:layout_constraintTop_toTopOf="@id/btn_eye_normal"
+            app:layout_constraintWidth_percent="0.23" />
+
+        <Button
+            android:id="@+id/btn_eye_angry"
+            android:layout_width="0dp"
+            android:layout_height="40dp"
+            android:backgroundTint="#EF4444"
+            android:text="Angry"
+            android:textAllCaps="false"
+            android:textColor="#FFFFFF"
+            android:textSize="12sp"
+            android:textStyle="bold"
+            app:cornerRadius="8dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@id/btn_eye_sad"
+            app:layout_constraintTop_toTopOf="@id/btn_eye_normal"
+            app:layout_constraintWidth_percent="0.23" />
+
+        <!-- Row 2: Surprised | Wink | Sleepy | Blink -->
+        <Button
+            android:id="@+id/btn_eye_surprised"
+            android:layout_width="0dp"
+            android:layout_height="40dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginEnd="6dp"
+            android:backgroundTint="#EC4899"
+            android:text="Surprised"
+            android:textAllCaps="false"
+            android:textColor="#FFFFFF"
+            android:textSize="12sp"
+            android:textStyle="bold"
+            app:cornerRadius="8dp"
+            app:layout_constraintEnd_toStartOf="@+id/btn_eye_wink"
+            app:layout_constraintHorizontal_chainStyle="spread"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/btn_eye_normal"
+            app:layout_constraintWidth_percent="0.23" />
+
+        <Button
+            android:id="@+id/btn_eye_wink"
+            android:layout_width="0dp"
+            android:layout_height="40dp"
+            android:layout_marginEnd="6dp"
+            android:backgroundTint="#14B8A6"
+            android:text="Wink"
+            android:textAllCaps="false"
+            android:textColor="#FFFFFF"
+            android:textSize="12sp"
+            android:textStyle="bold"
+            app:cornerRadius="8dp"
+            app:layout_constraintEnd_toStartOf="@+id/btn_eye_sleepy"
+            app:layout_constraintStart_toEndOf="@id/btn_eye_surprised"
+            app:layout_constraintTop_toTopOf="@id/btn_eye_surprised"
+            app:layout_constraintWidth_percent="0.23" />
+
+        <Button
+            android:id="@+id/btn_eye_sleepy"
+            android:layout_width="0dp"
+            android:layout_height="40dp"
+            android:layout_marginEnd="6dp"
+            android:backgroundTint="#78716C"
+            android:text="Sleepy"
+            android:textAllCaps="false"
+            android:textColor="#FFFFFF"
+            android:textSize="12sp"
+            android:textStyle="bold"
+            app:cornerRadius="8dp"
+            app:layout_constraintEnd_toStartOf="@+id/btn_eye_blink"
+            app:layout_constraintStart_toEndOf="@id/btn_eye_wink"
+            app:layout_constraintTop_toTopOf="@id/btn_eye_surprised"
+            app:layout_constraintWidth_percent="0.23" />
+
+        <Button
+            android:id="@+id/btn_eye_blink"
+            android:layout_width="0dp"
+            android:layout_height="40dp"
+            android:backgroundTint="#A855F7"
+            android:text="Blink"
+            android:textAllCaps="false"
+            android:textColor="#FFFFFF"
+            android:textSize="12sp"
+            android:textStyle="bold"
+            app:cornerRadius="8dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@id/btn_eye_sleepy"
+            app:layout_constraintTop_toTopOf="@id/btn_eye_surprised"
+            app:layout_constraintWidth_percent="0.23" />
+
+        <!-- Log -->
+        <TextView
+            android:id="@+id/lbl_log"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:text="Log"
+            android:textColor="#374151"
+            android:textSize="14sp"
+            android:textStyle="bold"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/btn_eye_surprised" />
+
+        <ScrollView
+            android:id="@+id/sv_log"
+            android:layout_width="0dp"
+            android:layout_height="150dp"
+            android:layout_marginTop="6dp"
+            android:background="@drawable/rounded_status_card"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/lbl_log">
+
+            <TextView
+                android:id="@+id/tv_log"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:fontFamily="monospace"
+                android:padding="12dp"
+                android:text="Waiting for connection..."
+                android:textColor="#10B981"
+                android:textIsSelectable="true"
+                android:textSize="12sp" />
+        </ScrollView>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</ScrollView>

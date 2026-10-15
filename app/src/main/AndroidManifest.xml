@@ -2,7 +2,6 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:sharedUserId="android.uid.system">
-
     <!-- 管理所有文件权限（需要特殊申请） -->
     <uses-permission android:name="android.permission.MANAGE_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.SYSTEM_ALERT_WINDOW" />
@@ -32,7 +31,12 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Demo"
         tools:targetApi="30">
-
+        <activity
+            android:name=".GestureActivity"
+            android:exported="false" />
+        <activity
+            android:name=".UartDemoActivity"
+            android:exported="false" />
         <activity
             android:name=".MainActivity"
             android:exported="true">
@@ -42,6 +46,24 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity
+            android:name=".SpiActivity"
+            android:exported="true" />
+        <activity
+            android:name=".I2cActivity"
+            android:exported="false" />
+        <activity
+            android:name=".GpioActivity"
+            android:exported="false" />
+        <activity
+            android:name=".OledActivity"
+            android:exported="false" />
+
+        <activity
+            android:name=".OledI2cActivity"
+            android:exported="false" />    <!-- add this -->
+
+
     </application>
 
 </manifest>

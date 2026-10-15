@@ -31,7 +31,17 @@ add_library(${CMAKE_PROJECT_NAME} SHARED
         # List C/C++ source files with relative paths to this CMakeLists.txt.
         envset.cpp)
 
+# Serial (UART) + SPI JNI driver for the 40-pin demo.
+add_library(io SHARED
+        serialspi.cpp)
 
+# GPIO (sysfs /sys/class/gpio) JNI driver for the 40-pin demo.
+add_library(gpio SHARED
+        gpio.cpp)
+
+# I2C (i2c-dev /dev/i2c-N) JNI driver for the 40-pin demo.
+add_library(i2c SHARED
+        i2c.cpp)
 
 # Specifies libraries CMake should link to your target library. You
 # can link libraries from various origins, such as libraries defined in this
@@ -39,5 +49,17 @@ add_library(${CMAKE_PROJECT_NAME} SHARED
 target_link_libraries(${CMAKE_PROJECT_NAME}
         # List libraries link to the target library
 
+        android
+        log)
+
+target_link_libraries(io
+        android
+        log)
+target_link_libraries(gpio
+        android
+        log)
+
+target_link_libraries(
+        i2c
         android
         log)

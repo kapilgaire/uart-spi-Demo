@@ -1,5 +1,13 @@
 pluginManagement {
     repositories {
+        // Aliyun mirrors FIRST — dl.google.com / maven.google.com / repo1.maven.org
+        // are SSL-reset from this network, and Gradle binds each module to the
+        // first repo that lists it, so the mirrors must be ahead of google().
+        maven { url 'https://maven.aliyun.com/repository/google' }
+        maven { url 'https://maven.aliyun.com/repository/gradle-plugin' }
+        maven { url 'https://maven.aliyun.com/repository/central' }
+        maven { url 'https://maven.aliyun.com/repository/public' }
+
         google {
             content {
                 includeGroupByRegex("com\\.android.*")
@@ -14,10 +22,15 @@ pluginManagement {
 dependencyResolutionManagement {
     repositoriesMode.set(RepositoriesMode.FAIL_ON_PROJECT_REPOS)
     repositories {
+        // Aliyun mirrors FIRST (same reason as above).
+        maven { url 'https://maven.aliyun.com/repository/google' }
+        maven { url 'https://maven.aliyun.com/repository/central' }
+        maven { url 'https://maven.aliyun.com/repository/public' }
+
         google()
         mavenCentral()
     }
 }
 
-rootProject.name = "AsEmptyProj"
+rootProject.name = "uart-spi-Demo"
 include ':app'
